@@ -2,6 +2,8 @@
 
 ### day 1 map함수 이용하여 array형식 state출력하기
 
+![Alt text](image.png)
+
 ```
 const [todo, setTodo] = useState([
     { id: 1, title: "치킨먹기", status: "진행중" },
@@ -10,7 +12,7 @@ const [todo, setTodo] = useState([
 ```
 
 ```
-<ul>
+      <ul>
         {todo.map((v, i) => {
           return <li key={v.id}>{v.title}</li>;
         })}
