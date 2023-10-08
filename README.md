@@ -79,5 +79,7 @@ npm i uuid
 uuid()로 호출가능 import 꼭 해줘야함
 
 ### [라이브러리] 리액트아이콘
+
 npm i react-icons
 
+## day-3 필터적용하기

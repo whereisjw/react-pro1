@@ -1,0 +1,31 @@
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: var(--color-text);
+}
+
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.text {
+  flex: 1 1 0%;
+}
+
+.icon {
+}
+
+.button {
+  width: 25px;
+  height: 25px;
+  background: none;
+  transition: all 100ms ease-out;
+  border-radius: 100%;
+}
+
+.button:hover {
+  transform: rotate(15deg) scale(1.2);
+}

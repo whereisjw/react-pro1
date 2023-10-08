@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import AddTodo from "./AddTodo";
-
-const TodoList = () => {
+import Todo from "./Todo";
+import styles from "./TodoList.module.css";
+const TodoList = ({ filter }) => {
   const [todo, setTodo] = useState([
     { id: 1, title: "치킨먹기", status: "진행중" },
     { id: 2, title: "헬스장가기", status: "끝남" },
@@ -11,7 +12,6 @@ const TodoList = () => {
     setTodo((prev) => {
       return [...prev, todo];
     });
-    console.log(todo);
   };
   const handleDel = (e) => {
     let copy = todo.filter((v) => {
@@ -26,29 +26,35 @@ const TodoList = () => {
       })
     );
   };
-
+  const filtered = getFilteredItems(todo, filter);
   return (
-    <div>
-      <ul>
-        {todo.map((v, i) => {
+    <section className={styles.container}>
+      <ul className={styles.list}>
+        {filtered.map((v, i) => {
           return (
-            <li key={v.id}>
-              <input
-                type="checkbox"
-                id="checkbox"
-                checked={v.status == "끝남"}
-              />
+            <Todo
+              key={v.id}
+              checked={v.status == "끝남"}
+              todo={v}
+              handleDel={handleDel}
+              id={v.id}
+              update={update}>
               {v.title}
-              <button onClick={handleDel} id={v.id} type="button">
-                삭제
-              </button>
-            </li>
+            </Todo>
           );
         })}
       </ul>
       <AddTodo onAdd={handleAdd} />
-    </div>
+    </section>
   );
 };
-
+function getFilteredItems(todo, filter) {
+  if (filter == "모두") {
+    return todo;
+  } else {
+    return todo.filter((todo) => {
+      return todo.status == filter;
+    });
+  }
+}
 export default TodoList;

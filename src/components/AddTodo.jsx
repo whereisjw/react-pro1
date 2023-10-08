@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
+import styles from "./TodoList.module.css";
 
 const AddTodo = ({ onAdd }) => {
   const [txt, setTxt] = useState("");
@@ -15,7 +16,7 @@ const AddTodo = ({ onAdd }) => {
     setTxt("");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Add Todo"
