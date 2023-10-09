@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import styles from "./TodoList.module.css";
 const TodoList = ({ filter }) => {
-  const [todo, setTodo] = useState([
-    { id: 1, title: "치킨먹기", status: "진행중" },
-    { id: 2, title: "헬스장가기", status: "끝남" },
-  ]);
+  const [todo, setTodo] = useState(() => readTodoFn());
 
   const handleAdd = (todo) => {
     setTodo((prev) => {
@@ -26,6 +23,10 @@ const TodoList = ({ filter }) => {
       })
     );
   };
+
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+  }, [todo]);
   const filtered = getFilteredItems(todo, filter);
   return (
     <section className={styles.container}>
@@ -56,5 +57,10 @@ function getFilteredItems(todo, filter) {
       return todo.status == filter;
     });
   }
+}
+
+function readTodoFn() {
+  const todo = localStorage.getItem("todo");
+  return todo ? JSON.parse(todo) : [];
 }
 export default TodoList;
