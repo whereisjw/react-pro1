@@ -4,6 +4,7 @@ import "../App.css";
 const Filter = ({ filters, filter, setFilter }) => {
   return (
     <header>
+      <button> ☀️</button>
       <ul>
         {filters.map((v, i) => (
           <li key={i}>

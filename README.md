@@ -1,6 +1,6 @@
 # TodoList react 구현
 
-## d-1 map함수 이용하여 array형식 state출력하기
+## D+1 map함수 이용하여 array형식 state출력하기
 
 ![Alt text](image.png)
 
@@ -23,7 +23,7 @@ todo 라는 array 형식의 state에 id,title,status 값을 보관하는 객체�
 추후 입력값에 따라 동적으로 진행하기 위해 map 함수로 배열을 복사해 li 태그 값을 출력했습니다.
 localstorage에 배열을 보관하고 배열값을 다시 출력하는 식으로 진행 할 예정입니다.
 
-## d-2 추가기능구현
+## D+2 추가기능구현
 
 ```
 const AddTodo = ({ onAdd }) => {
@@ -82,4 +82,30 @@ uuid()로 호출가능 import 꼭 해줘야함
 
 npm i react-icons
 
-## day-3 필터적용하기
+## D+3 필터적용하기
+
+![Alt text](image-2.png)
+
+```
+const filters = ["모두", "진행중", "끝남"];
+function App() {
+  const [filter, setFilter] = useState(filters[0]);
+```
+
+filters라는 배열을 만들고 배열을 이용해 버튼을 동적 생성 하였습니다. 필터의 현 상태 값을 기억 및 변경하기위해 filter라는 state를 만들었습니다.
+
+```
+function getFilteredItems(todo, filter) {
+  if (filter == "모두") {
+    return todo;
+  } else {
+    return todo.filter((todo) => {
+      return todo.status == filter;
+    });
+  }
+}
+```
+
+state 초기값은 '모두'로 설정해뒀기때문에 값이 '모두' 였을때 전체 값을 리턴해주고 그외 에는 filter함수에 따라 분류하는 조건문을 사용했습니다.
+
+## D+4 다크모드 구현하기
